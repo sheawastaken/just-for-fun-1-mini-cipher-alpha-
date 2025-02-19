@@ -11,28 +11,30 @@ namespace CeasarCipher
 
             for (int i = 0; i < message.Length; i++)
             {
+                int keyIndex = i % key.Length;
                 int asciiValue = (int)message[i];
-                int newAsciiValue = asciiValue + key[i];
+                int newAsciiValue = asciiValue + key[keyIndex];
                 encodedMessage[i] = (char)newAsciiValue;
             }
 
             return new string(encodedMessage);
         }
 
-        // Decoding method
         static string decode(string message, int[] key)
         {
             char[] decodedMessage = new char[message.Length];
 
             for (int i = 0; i < message.Length; i++)
             {
+                int keyIndex = i % key.Length;
                 int asciiValue = (int)message[i];
-                int newAsciiValue = asciiValue - key[i];
+                int newAsciiValue = asciiValue - key[keyIndex];
                 decodedMessage[i] = (char)newAsciiValue;
             }
 
             return new string(decodedMessage);
         }
+
 
         static void Main(string[] args)
         {
